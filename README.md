@@ -3,6 +3,8 @@ Any redistribution or commercial usage is strictly prohibited.
 
 # FINALE FP16 分层训练项目（最低 0.5GB 显存）
 
+![](https://github.com/Heart-of-Africa/finale-FluxProp/blob/main/mem-loss.png)
+
 该项目允许在显存非常有限的情况下（最低 0.5GB）逐层训练模型。
 
 ## 使用方式
