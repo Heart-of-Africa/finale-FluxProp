@@ -1,9 +1,11 @@
 This project is licensed for personal, non-commercial use only.
 Any redistribution or commercial usage is strictly prohibited.
 
-# OVERTURE BP16 分层训练项目（适配 6GB 显存）
+# FINALE FP16 分层训练项目（最低 125MB 显存）
 
-该项目允许在显存非常有限的情况下（最低6GB）逐层训练模型。
+![](https://github.com/Heart-of-Africa/finale-FluxProp/blob/main/mem-loss.png)
+
+该项目允许在显存非常有限的情况下（最低 125MB）逐层训练模型。
 
 ## 使用方式
 
@@ -12,42 +14,52 @@ Any redistribution or commercial usage is strictly prohibited.
 
 2. 训练第 i 层（例如第 5 层）：
     python train_layer.py --layer 5
-2.5 训练PBE 第 i 层（例如第 5 层）
-    python train_layer_bpe.py --layer 5
 
 3. 训练完 i 层，即可尝试部署 i 层
-    python infer_layer0.py
+    python inference.py
+
+btw 尝试部署时请将checkpoints中的文件(.pt)放入主目录文件夹中，在inference.py中修改第22行中文件的名字：
+    def load_model(checkpoint_path="your file name.pt", train_txt="train.txt"):
 
 5. 所有层训练完后，可在 merge_checkpoints.py 中合并权重。
 
 ## 技术策略
+1. 模型架构：
 
-- 每次只训练一个 Transformer 层
-- 其他层全部冻结，节省显存
-- 使用 BF16 精度
-- 支持恢复与逐阶段检查
+基于自定义的 LNNLanguageModel 类，核心集成逻辑神经模块与马尔科夫转移机制；
 
-建议训练所有 24 层，每层输出会保存在 `./checkpoints/layer_XX/` 中。
+每层支持反向传播时动态计算马尔科夫转移矩阵，嵌入“状态跳转”解释能力；
 
-# LLM FP32 Layer-by-Layer Training Program (for 6GB video memory)
+训练中每一层可单独冻结或激活，支持逐层精调。
 
-This project allows to train models layer by layer with very limited video memory (minimum 6GB).
+2. 训练机制：
 
-## Usage
+使用标准 PyTorch 训练框架；
 
-1. Install the dependencies: 
- pip install -r requirements.txt
+支持 AMP 混合精度训练；
 
-2. Train layer i (e.g. layer 5): 
- python train_layer.py --layer 5
+自定义的 train_layer.py 脚本通过传参 --layer 指定训练的层；
 
-3. After all layers are trained, merge the weights in merge_checkpoints.py.
+自动保存 checkpoint 文件，可断点恢复。
 
-## Technical Strategy
+3. 推理系统：
 
-- Train only one Transformer layer at a time
-- Freeze all other layers to save memory
-- Use BF16 precision
-- Supports recovery and stage-by-stage checking
+独立的 inference.py 脚本，支持加载指定 checkpoint 模型进行文本生成；
 
-It is recommended to train all 24 layers, and the output of each layer is saved in `. /checkpoints/layer_XX/`.
+支持 GUI 操作界面，统一封装为 fluxprop_app.py，便于部署打包成桌面应用。
+
+4. 分词系统：
+
+当前未使用自定义 BPE 分词器；
+
+训练语料已进行统一分词或预处理；
+
+分词器可切换为 transformers 中的预定义 GPT2Tokenizer，或后续替换为自定义 tokenizer。
+
+5. 环境与部署：
+
+支持在 Ubuntu + CUDA GPU 环境中部署；
+
+可使用 PyInstaller 生成 GUI 可执行包；
+
+多进程分布式训练准备完备，可扩展至多 GPU；
