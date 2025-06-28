@@ -1,2 +1,13 @@
-torch>=1.12.0
-numpy
+torch>=2.0
+sentencepiece>=0.1.99
+transformers>=4.30
+datasets>=2.18
+accelerate>=0.28
+tqdm>=4.66
+numpy>=1.23
+PyYAML>=6.0
+matplotlib>=3.7
+tensorboard>=2.14
+gradio>=4.20   # 如果使用 Web GUI
+PyQt5>=5.15    # 如果使用桌面 GUI
+pyinstaller>=5.13  # 用于打包 .exe 应用（可选）

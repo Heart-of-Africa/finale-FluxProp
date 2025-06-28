@@ -24,7 +24,7 @@ class LiquidNeuron(nn.Module):
         return torch.bmm(M, grad.unsqueeze(2)).squeeze(2)
 
 class LNNLanguageModel(nn.Module):
-    def __init__(self, vocab_size, embed_size=256, hidden_size=256, num_layers=6, alpha=0.1, device="cpu"):
+    def __init__(self, vocab_size, embed_size=256, hidden_size=1024, num_layers=12, alpha=0.1, device="cpu"):
         super().__init__()
         self.embedding = nn.Embedding(vocab_size, embed_size)
         self.liquid_layers = nn.ModuleList([

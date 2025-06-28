@@ -58,8 +58,8 @@ valid_size = len(dataset) - train_size
 train_dataset, valid_dataset = random_split(dataset, [train_size, valid_size])
 
 # 加载器
-train_loader = DataLoader(train_dataset, batch_size=2048, shuffle=True)
-valid_loader = DataLoader(valid_dataset, batch_size=2048)
+train_loader = DataLoader(train_dataset, batch_size=1024, shuffle=True)
+valid_loader = DataLoader(valid_dataset, batch_size=1024)
 
 # 初始化模型与训练工具
 device = "cuda" if torch.cuda.is_available() else "cpu"
