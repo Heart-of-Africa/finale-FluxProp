@@ -2,13 +2,20 @@ Copyright (c) 2025 Heart of Africa
 
 All rights reserved.
 
-Permission is granted to view, use, and modify this software for personal, non-commercial purposes only.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to use, modify, and redistribute the Software, including in open-source repositories, under the following conditions:
 
-You may NOT:
-- Use this software for any commercial purpose.
-- Redistribute, sublicense, or publish this software or any modified version.
-- Incorporate this software into any product or service intended for sale or distribution.
+1. The Software and any modified versions may only be used for **non-commercial purposes**.
+2. Redistribution (including public posting or open-source publishing) is allowed **only if**:
+   - Proper credit is given to the original author (overture),
+   - The license terms are included with the redistribution.
+3. You may modify the Software and distribute your modifications, provided that:
+   - You clearly indicate the changes made,
+   - You include this license with your version.
 
-This software is provided "AS IS", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the authors be liable for any claim, damages, or other liability, arising from or in connection with the software or the use of the software.
+You may **NOT**:
+- Use this software or any derivative works for commercial purposes.
+- Sell, sublicense, or incorporate this software into any product or service intended for sale or commercial use.
 
-For commercial use, please contact the author for a separate license.
+THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE.
+
+For commercial licensing, please contact the original author.
