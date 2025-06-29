@@ -18,10 +18,11 @@ Any redistribution or commercial usage is strictly prohibited.
 3. 训练完 i 层，即可尝试部署 i 层
     python inference.py
 
-btw 尝试部署时请将checkpoints中的文件(.pt)放入主目录文件夹中，在inference.py中修改第22行中文件的名字：
+3.5 btw 尝试部署时请将checkpoints中的文件(.pt)放入主目录文件夹中，在inference.py中修改第22行中文件的名字：
     def load_model(checkpoint_path="your file name.pt", train_txt="train.txt"):
 
 5. 所有层训练完后，可在 merge_checkpoints.py 中合并权重。
+    python merge_checkpoints.py
 
 ## 技术策略
 1. 模型架构：
