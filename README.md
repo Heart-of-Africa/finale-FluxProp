@@ -21,18 +21,24 @@ Any redistribution or commercial usage is strictly prohibited.
 3.5 btw 尝试部署时请将checkpoints中的文件(.pt)放入主目录文件夹中，在inference.py中修改第22行中文件的名字：
     def load_model(checkpoint_path="your file name.pt", train_txt="train.txt"):
 
-5. 所有层训练完后，可在 merge_checkpoints.py 中合并权重。
+5. 所有层训练完后，可在 merge_checkpoints.py 中合并权重:
     python merge_checkpoints.py
 
 6. 如需更改模型参数：
-    更改 embed_size（嵌入维度）hidden_size（隐藏层大小）num_layers（网络的层数）alpha（缩放因子）device（Lnn模型使用的设备）请在LNNModel.py的27行中更改，例如
-       def __init__(self, vocab_size, embed_size=256, hidden_size=1024, num_layers=12, alpha=0.1, device="cpu"):
-    更改 Batch_size请在train_layer.py的61,62行中更改,例如：
-       train_loader = DataLoader(train_dataset, batch_size=1024, shuffle=True)
-        valid_loader = DataLoader(valid_dataset, batch_size=1024)
-        （请务必保持Train_loader和valid_loader的batch_size保持一致）
+    更改 embed_size（嵌入维度）hidden_size（隐藏层大小）num_layers（网络的层数）alpha（缩放因子）device（Lnn模型使用的设备）请在LNNModel.py的27行中更改，例如:
 
-7.目前模型参数过高，模型实际占用显存为2.3GB左右但由于CUDA访问显存代价问题，Pytorch会提前占用16GB左右显存，如果设备不符合条件，我建议降低隐藏层大小至128，网络层数为6,Batch_size可以不动，如果您的设备只有2gb显存，建议重复刚才的操作并且将batch_size降低为512.
+   def __init__(self, vocab_size, embed_size=256, hidden_size=1024, num_layers=12, alpha=0.1, device="cpu"):
+
+    更改 Batch_size请在train_layer.py的61,62行中更改,例如：
+
+   train_loader = DataLoader(train_dataset, batch_size=1024, shuffle=True)
+
+   valid_loader = DataLoader(valid_dataset, batch_size=1024)
+
+   （请务必保持Train_loader和valid_loader的batch_size保持一致）
+
+7.目前模型参数过高，模型实际占用显存为2.3GB左右但由于CUDA访问显存代价问题，Pytorch会提前占用16GB左右显存，如果设备不符合条件，
+    我建议降低隐藏层大小至128，网络层数为6,Batch_size可以不动，如果您的设备只有2gb显存，建议重复刚才的操作并且将batch_size降低为512.
 
 8. 本项目大多数代码已经添加注释,修改生成文件目录我认为不需要再详细赘述.
         
